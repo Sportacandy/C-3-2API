@@ -1,0 +1,35 @@
+    get:
+      tags:
+      - データ流通システム
+      description: XXXデータモデルのデータを取得します。
+      parameters:
+      - name: targetDataModel
+        in: path
+        description: 対象データモデル
+        required: true
+        schema:
+          type: string
+        example: parts
+      - name: dataId
+        in: path
+        description: データID
+        required: true
+        schema:
+          type: string
+        example: 123456789
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: "../components/schemas/dataModel/nearMissInfoList.yaml#/nearMissInfoList"
+                - $ref: "../components/schemas/dataModel/parts.yaml#/parts"
+                - $ref: "../components/schemas/dataModel/template.yaml#/datamodelname"
+                - $ref: "../components/schemas/dataModel/voxels.yaml#/voxels"
+      responses:
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found

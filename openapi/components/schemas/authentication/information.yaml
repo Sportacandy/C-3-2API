@@ -1,0 +1,14 @@
+    information:
+      required:
+      - accountPassword
+      - operatorAccountId
+      type: object
+      properties:
+        accountPassword:
+          type: string
+          description: 認証アカウントパスワード
+          example: password
+        operatorAccountId:
+          type: string
+          description: 認証アカウントID
+          example: account1234

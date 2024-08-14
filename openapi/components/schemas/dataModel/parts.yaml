@@ -1,0 +1,81 @@
+parts:
+  required:
+  - dataModelType
+  - name
+  - attribute
+  type: object
+  description: 部品情報に関するデータモデル。蓄電池トレーサビリティにおけるサプライチェーン上のデータ連携に用いる
+  properties:
+    dataModelType:
+      type: string
+      description: データモデルタイプ
+      enum:
+        - test1
+        - test2
+      example: test1
+    attribute:
+      type: object
+      description: データモデル要素
+      required:
+        - operatorId
+        - partsName
+        - plantId
+        - supportPartsName
+        - terminatedFlag
+      properties:
+        traceId:
+          type: string
+          format: uuid 
+          description: 部品を一意に識別するトレースID
+          minLength: 36
+          maxLength: 36
+          example: "78aa302c-1600-44b3-a331-e4659c0b28a1"
+        amountRequired:
+          type: number
+          description: 部品の活動量
+          format: double
+          minimum: 0
+          maximum: 99999.99999
+          example: 1
+        amountRequiredUnit:
+          type: string
+          description: 部品の活動量単位
+          enum:
+          - liter 
+          - kilogram
+          - cubic-meter
+          - kilowatt-hour
+          - megajoule
+          - ton-kilometer
+          - square-meter
+          - unit
+          example: kilogram
+        operatorId:
+          type: string
+          format: uuid 
+          description: 事業者識別子
+          minLength: 36
+          maxlength: 36
+          example: "78aa302c-1600-44b3-a331-e4659c0b28a1"
+        partsName:
+          type: string
+          description: 部品名
+          minLength: 1
+          maxLength: 20
+          example: "partsA-1234"
+        plantId:
+          type: string
+          format: uuid 
+          description: 部品製造工場のID
+          minLength: 36
+          maxlength: 36
+          example: "78aa302c-1600-44b3-a331-e4659c0b28a1"
+        supportPartsName:
+          type: string
+          description: 部品に関する補助説明項目
+          minLength: 1
+          maxLength: 10
+          example: "製品Aの子部品"
+        terminatedFlag:
+          type: boolean
+          description: 部品が終端かどうかを表すフラグ

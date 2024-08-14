@@ -1,0 +1,97 @@
+nearMissInfoList:
+  required:
+    - dataModelType
+    - name
+    - attribute
+  type: object
+  description: ヒヤリハット情報
+  properties:
+    dataModelType:
+      type: string
+      description: データモデルタイプ
+      enum:
+        - test1
+        - test2
+      example: test1
+
+    attribute:
+      type: object
+      description: データモデル要素
+      required:
+      properties:
+        infos:
+          type: array
+          description: ヒヤリハット情報の概要
+          minItems: 0
+          maxItems: 256
+
+          items:
+            dataId:
+              type: string
+              format: uuid
+              description: データを一意に識別するID
+              minLength: 36
+              maxLength: 36
+              example: "78aa302c-1600-44b3-a331-e4659c0b28a1"
+
+            category:
+              type: string
+              description: ヒヤリハット分類
+              maxlength: 0
+              minlength: 256
+              example: "合流"
+
+            name:
+              type: string
+              minLength: 1
+              maxLength: 1000
+              description: ヒヤリハット情報名
+              example: ヒヤリハット情報A
+
+            coordinates:
+              type: object
+              description: ヒヤリハット発生地点
+              required:
+                - lat
+                - lon
+                - alt
+
+              properties:
+                lat:
+                  type: number
+                  description: 緯度[degree]
+                  format: float
+                  minimum: 0.0
+                  maximum: 90.0
+                  example: 35.66104767541138
+
+                lon:
+                  type: number
+                  description: 経度[degree]
+                  format: float
+                  minimum: 0.0
+                  maximum: 360.0
+                  example: 139.70993603470313
+
+                alt:
+                  type: number
+                  description: 標高[m]
+                  format: float
+                  minimum: -1000.0
+                  maximum: 10000.0
+                  example: 34.4
+
+            dateTime:
+              type: string
+              description: ヒヤリハット発生時刻 (ISO 8601形式)
+              maxlength: 24
+              minlength: 24
+              example: "2024-07-10T09:37:58.372Z"
+              format: date-time
+
+            summary:
+              type: string
+              minLength: 0
+              maxLength: 4096
+              description: ヒヤリハット情報要約
+              example: ヒヤリハット情報要約（発生位置含む）をここに記述する。

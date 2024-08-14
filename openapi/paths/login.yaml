@@ -1,0 +1,19 @@
+    post:
+      tags:
+      - ユーザ認証システム
+      description: |-
+        ID/パスワードによりログイン処理を行います。
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/authentication/information.yaml#/information"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "../components/schemas/authentication/token.yaml#/token"

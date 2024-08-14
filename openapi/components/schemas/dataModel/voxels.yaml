@@ -1,0 +1,71 @@
+voxels:
+  required:
+  - dataModelType
+  - name
+  - attribute
+  type: object
+  description: 空間情報に関するデータモデル。ドローン航路システムにおけるデータ連携で用いる。
+  properties:
+    dataModelType:
+      type: string
+      description: データモデルタイプ
+      enum:
+        - test1
+        - test2
+      example: test1
+    attribute:
+      type: object
+      description: データモデル要素
+      required:
+        - objectId
+        - voxels
+      properties:
+        objectId:
+          type: string
+          maxlength: 1
+          minlength: 5
+          description: データを一意に識別するID
+          example: "12345"
+        voxels:
+          type: object
+          description: v2Voxelsのオブジェクト
+          required:
+            - terrain
+          properties:
+            terrain:
+              type: object
+              description: 地形情報
+              required:
+                - x
+                - y
+                - z
+                - id
+              properties:
+                x:
+                  type: integer
+                  description: x座標
+                  format: int32
+                  minimum: -255
+                  maximum: 255
+                  example: 0
+                y:
+                  type: integer
+                  description: y座標
+                  format: int32
+                  minimum: -255
+                  maximum: 255
+                  example: 0
+                z:
+                  type: integer
+                  description: z座標
+                  format: int32
+                  minimum: -255
+                  maximum: 255
+                  example: 0
+                id:
+                  type: string
+                  description: 空間ID
+                  format: uuid
+                  maxlength: 36
+                  minlength: 36
+                  example: "78aa302c-1600-44b3-a331-e4659c0b28a1"
