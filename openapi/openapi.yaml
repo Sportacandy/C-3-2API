@@ -1,28 +1,26 @@
 openapi: "3.0.3"
 info:
-  title: ユーザ認証/データ連携API
+  title: C-3-2 ヒヤリハット管理システムAPI
   version: "0.0.1"
 servers:
   - url: https://api.server.test/v1
 paths:
+  /nearmissinfolist:
+    $ref: "./paths/nearMissInfoList.yaml"
+  /attributes:
+    $ref: "./paths/attributes.yaml"
+  # /{targetDataModel}:
+  #   $ref: "./paths/targetDataModel.yaml"
   /login:
     $ref: "./paths/login.yaml"
-  /{targetDataModel}:
-    $ref: "./paths/targetDataModel.yaml"
 components:
   schemas:
     authentication.Information:
       $ref: "./components/schemas/authentication/information.yaml#/information"
     authentication.Token:
       $ref: "./components/schemas/authentication/token.yaml#/token"
-    dataModel.template:
-      $ref: "./components/schemas/dataModel/template.yaml#/datamodelname"
-    dataModel.voxels:
-      $ref: "./components/schemas/dataModel/voxels.yaml#/voxels"
-    dataModel.parts:
-      $ref: "./components/schemas/dataModel/parts.yaml#/parts"
-    dataModel.nearMissInfo:
-      $ref: "./components/schemas/dataModel/nearMissInfo.yaml#/nearMissInfo"
+    dataModel.attributes:
+      $ref: "./components/schemas/dataModel/attributes.yaml#/attributes"
     dataModel.nearMissInfoList:
       $ref: "./components/schemas/dataModel/nearMissInfoList.yaml#/nearMissInfoList"
   securitySchemes:

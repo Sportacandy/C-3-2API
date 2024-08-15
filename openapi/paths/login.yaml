@@ -1,6 +1,6 @@
     post:
       tags:
-      - ユーザ認証システム
+      - データ流通システム ユーザ認証
       description: |-
         ID/パスワードによりログイン処理を行います。
       requestBody:

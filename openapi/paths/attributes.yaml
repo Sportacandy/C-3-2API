@@ -1,0 +1,17 @@
+    put:
+      tags:
+      - ヒヤリハット管理システム（データ流通システム取扱対象外）
+      summary: C-3-2 ヒヤリハット抽出属性設定
+      description: ヒヤリハット抽出属性データモデルのデータを設定します。
+      requestBody:
+        description: Request Body
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: "../components/schemas/dataModel/attributes.yaml#/attributes"
+      responses:
+        200:
+          description: OK
+        400:
+          description: リクエスト入力形式不備

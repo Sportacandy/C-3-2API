@@ -1,0 +1,92 @@
+    get:
+      tags:
+      - ヒヤリハット管理システム
+      summary: C-3-2 ヒヤリハット情報一覧データモデル取得
+      description: ヒヤリハット情報一覧データモデルのデータを取得します。
+      parameters:
+      - name: id
+        in: query
+        description: データIDフィルター
+        schema:
+          type: string
+          format: uuid
+          minLength: 36
+          maxLength: 36
+          example: 78aa302c-1600-44b3-a331-e4659c0b28a1
+      - name: name
+        in: query
+        description: 名称フィルター
+        schema:
+          type: string
+          minLength: 0
+          maxLength: 4096
+          example: 浜松
+      - name: category
+        in: query
+        description: 分類フィルター
+        schema:
+          type: string
+          minLength: 0
+          maxLength: 4096
+          example: cat12-
+      - name: summary
+        in: query
+        description: 要約フィルター
+        schema:
+          type: string
+          minLength: 0
+          maxLength: 4096
+          example: 追い越し
+      - name: from
+        in: query
+        description: 発生時刻フィルター。下限値（包含）
+        schema:
+          type: string
+          format: date-time
+          example: 2024-07-10T09:37:58.372Z
+      - name: to
+        in: query
+        description: 発生時刻フィルター。上限値（排他）
+        schema:
+          type: string
+          format: date-time
+          example: 2024-07-11T09:37:58.372Z
+      - name: lat0
+        in: query
+        description: 発生地点フィルター。下限緯度（包含）
+        schema:
+          type: number
+          format: double
+          example: 35.66104767541138
+      - name: lon0
+        in: query
+        description: 発生地点フィルター。下限経度（包含）
+        schema:
+          type: number
+          format: double
+          example: 139.70993603470313
+      - name: lat1
+        in: query
+        description: 発生地点フィルター。上限緯度（包含）
+        schema:
+          type: number
+          format: double
+          example: 35.86104767541138
+      - name: lon1
+        in: query
+        description: 発生地点フィルター。上限経度（包含）
+        schema:
+          type: number
+          format: double
+          example: 139.90993603470313
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "../components/schemas/dataModel/nearMissInfoList.yaml#/nearMissInfoList"
+        400:
+          description: リクエスト入力形式不備
+        401:
+          description: 認証トークン不備、有効期限切れ、アクセス権限無し
