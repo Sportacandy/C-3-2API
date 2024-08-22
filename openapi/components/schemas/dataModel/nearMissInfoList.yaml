@@ -1,130 +1,145 @@
 nearMissInfoList:
-  type: array
+  required:
+  - dataModelType
+  - name
+  - attribute
+  type: object
   description: ヒヤリハット情報リスト
-  minItems: 0
-  maxItems: 2147483647
-  items:
-    type: object
-    description: ヒヤリハット情報
-    required:
-      - id
-    properties:
-      id:
-        type: string
-        format: uuid
-        description: データID
-        minLength: 36
-        maxLength: 36
-        example: 78aa302c-1600-44b3-a331-e4659c0b28a1
-      uri:
-        type: string
-        description: データフォルダURI
-        minlength: 1
-        maxlength: 4096
-        example: https://hhBucketName.s3.ap-northeast-1.amazonaws.com
-      name:
-        type: string
-        minLength: 1
-        maxLength: 4096
-        description: 名称
-        example: ヒヤリハット情報A
-      category:
-        type: string
-        description: 分類
-        minlength: 0
-        maxlength: 4096
-        example: 合流
-      summary:
-        type: string
-        minLength: 0
-        maxLength: 4096
-        description: 要約
-        example: ヒヤリハット情報要約をここに記述する。
-      timestamp:
-        type: string
-        format: date-time
-        description: 発生時刻 (ISO 8601形式)
-        example: 2024-07-10T09:37:58.372Z
-      coordinates:
-        type: array
-        description: 発生地点
-        minItems: 0
-        maxItems: 2147483647
-        items:
-          type: object
-          required:
-            - lat
-            - lon
-          properties:
-            lat:
-              type: number
-              description: 緯度[degree]
-              format: double
-              minimum: -90.0
-              maximum: 90.0
-              example: 35.66104767541138
-            lon:
-              type: number
-              description: 経度[degree]
-              format: double
-              minimum: -180.0
-              maximum: 180.0
-              example: 139.70993603470313
-            alt:
-              type: number
-              description: 標高[m]
-              format: double
-              minimum: -10000000.0
-              maximum: 10000000.0
-              example: 34.4
-      attributes:
-        type: array
-        description: ヒヤリハット属性リスト。発生位置、発生時刻、分類等以外の属性を保持する。
-        minItems: 0
-        maxItems: 2147483647
-        items:
-          type: object
-          required:
-            - key
-            - value
-          properties:
-            key:
-              type: string
-              minLength: 1
-              maxLength: 4096
-              example: someAttributeName
-            value:
-              type: string
-              minLength: 1
-              maxLength: 2147483647
-              example: someAttributeValue
-      files:
-        type: array
-        minItems: 0
-        maxItems: 2147483647
-        items:
-          type: object
-          required:
-            - type
-            - size
-            - uri
-          properties:
-            type:
-              type: string
-              minLength: 0
-              maxLength: 4096
-              description: ファイル種別
-              example: egoVehiclePosition
-            size:
-              type: number
-              format: int32
-              description: ファイルサイズ[bytes]
-              minimum: 0
-              maximum: 2147483647
-              example: 12033065
-            uri:
-              type: string
-              minLength: 0
-              maxLength: 4096
-              description: ファイルURI
-              example: https://hhBucketName.s3.ap-northeast-1.amazonaws.com/hhObjectName?XXXX=YYY&ZZZZ=WWW
+  properties:
+    dataModelType:
+      type: string
+      description: データモデルタイプ
+      enum:
+        - test1
+        - test2
+      example: test1
+    attribute:
+      type: array
+      description: ヒヤリハット情報リスト
+      minItems: 0
+      maxItems: 2147483647
+      items:
+        type: object
+        description: ヒヤリハット情報
+        required:
+          - id
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: データID
+            minLength: 36
+            maxLength: 36
+            example: 78aa302c-1600-44b3-a331-e4659c0b28a1
+          uri:
+            type: string
+            description: データフォルダURI
+            minlength: 1
+            maxlength: 4096
+            example: https://hhBucketName.s3.ap-northeast-1.amazonaws.com
+          name:
+            type: string
+            minLength: 1
+            maxLength: 4096
+            description: 名称
+            example: ヒヤリハット情報A
+          category:
+            type: string
+            description: 分類
+            minlength: 0
+            maxlength: 4096
+            example: 合流
+          summary:
+            type: string
+            minLength: 0
+            maxLength: 4096
+            description: 要約
+            example: ヒヤリハット情報要約をここに記述する。
+          timestamp:
+            type: string
+            format: date-time
+            description: 発生時刻 (ISO 8601形式)
+            example: 2024-07-10T09:37:58.372Z
+          coordinates:
+            type: array
+            description: 発生地点
+            minItems: 0
+            maxItems: 2147483647
+            items:
+              type: object
+              required:
+                - lat
+                - lon
+              properties:
+                lat:
+                  type: number
+                  description: 緯度[degree]
+                  format: double
+                  minimum: -90.0
+                  maximum: 90.0
+                  example: 35.66104767541138
+                lon:
+                  type: number
+                  description: 経度[degree]
+                  format: double
+                  minimum: -180.0
+                  maximum: 180.0
+                  example: 139.70993603470313
+                alt:
+                  type: number
+                  description: 標高[m]
+                  format: double
+                  minimum: -10000000.0
+                  maximum: 10000000.0
+                  example: 34.4
+          attributes:
+            type: array
+            description: ヒヤリハット属性リスト。発生位置、発生時刻、分類等以外の属性を保持する。
+            minItems: 0
+            maxItems: 2147483647
+            items:
+              type: object
+              required:
+                - key
+                - value
+              properties:
+                key:
+                  type: string
+                  minLength: 1
+                  maxLength: 4096
+                  example: someAttributeName
+                value:
+                  type: string
+                  minLength: 1
+                  maxLength: 2147483647
+                  example: someAttributeValue
+          files:
+            type: array
+            minItems: 0
+            maxItems: 2147483647
+            items:
+              type: object
+              required:
+                - type
+                - size
+                - uri
+              properties:
+                type:
+                  type: string
+                  minLength: 0
+                  maxLength: 4096
+                  description: ファイル種別
+                  example: egoVehiclePosition
+                size:
+                  type: number
+                  format: int32
+                  description: ファイルサイズ[bytes]
+                  minimum: 0
+                  maximum: 2147483647
+                  example: 12033065
+                uri:
+                  type: string
+                  minLength: 0
+                  maxLength: 4096
+                  description: ファイルURI
+                  example: https://hhBucketName.s3.ap-northeast-1.amazonaws.com/hhObjectName?XXXX=YYY&ZZZZ=WWW
