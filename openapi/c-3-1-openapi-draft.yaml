@@ -1,0 +1,43 @@
+openapi: 3.0.3
+info:
+  title: C-3-1 シミュレーション生成アプリAPI
+  version: "0.0.1"
+servers:
+  - url: https://c31api.server.test/v1
+paths:
+  /extractAttributes:
+    put:
+      summary: ヒヤリハット属性抽出を依頼する。
+      description: |
+        「C-3-1シミュレーション生成アプリ」に対して、ヒヤリハット属性抽出を依頼する。
+        リクエスト内のURI（S3バケットURL）に含まれる全てのファイル群が抽出対象となる。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AttributeExtractionRequest"
+      responses:
+        202:
+          description: Accepted / Job Started / Job Completed
+components:
+  schemas:
+    AttributeExtractionRequest:
+      type: object
+      required:
+        - id
+        - uri
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: データID
+          minLength: 36
+          maxLength: 36
+          example: 78aa302c-1600-44b3-a331-e4659c0b28a1
+        uri:
+          type: string
+          description: データフォルダURI。（s3 バケットのURL）
+          minlength: 1
+          maxlength: 4096
+          example: https://hhBucketName.s3.ap-northeast-1.amazonaws.com
