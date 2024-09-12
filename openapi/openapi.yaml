@@ -7,6 +7,8 @@ servers:
 paths:
   /nearmissinfolist:
     $ref: "./paths/nearMissInfoList.yaml"
+  /categorylist:
+    $ref: "./paths/categoryList.yaml"
   /attributes:
     $ref: "./paths/attributes.yaml"
   # /{targetDataModel}:
@@ -23,6 +25,8 @@ components:
       $ref: "./components/schemas/dataModel/attributes.yaml#/attributes"
     dataModel.nearMissInfoList:
       $ref: "./components/schemas/dataModel/nearMissInfoList.yaml#/nearMissInfoList"
+    dataModel.categoryList:
+      $ref: "./components/schemas/dataModel/categoryList.yaml#/categoryList"
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,0 +1,31 @@
+categoryList:
+  required:
+  - dataModelType
+  - name
+  - attribute
+  type: object
+  description: ヒヤリハット分類リスト
+  properties:
+    dataModelType:
+      type: string
+      description: データモデルタイプ
+      enum:
+        - test1
+        - test2
+      example: test1
+    attribute:
+      type: object
+      properties:
+        categories:
+          type: array
+          description: ヒヤリハット分類リスト
+          minItems: 0
+          maxItems: 2147483647
+          items:
+            type: string
+            description: ヒヤリハット分類
+            minLength: 1
+            maxLength: 4096
+          example:
+           - 交差点
+           - カーブ

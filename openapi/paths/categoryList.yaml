@@ -1,0 +1,16 @@
+    get:
+      tags:
+      - ヒヤリハット管理システム
+      summary: C-3-2 ヒヤリハット分類一覧データモデル取得
+      description: ヒヤリハット分類一覧データモデルを取得します。
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "../components/schemas/dataModel/categoryList.yaml#/categoryList"
+        400:
+          description: リクエスト入力形式不備
+        401:
+          description: 認証トークン不備、有効期限切れ、アクセス権限無し
